@@ -35,15 +35,18 @@ function Home() {
 const res = await fetch("http://localhost:3000/api/generate", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ prompt: input }),
+  body: JSON.stringify({ query: input }), 
 });
 
       const data = await res.json();
+      console.log(data.result.answer);
+      
+      const result = await data.result.answer;
 
       setMessages([
         ...newMessages,
         {
-          message: data.result || "Sorry, I didn’t get that.",
+          message: result || "Sorry, I didn’t get that.",
           messageFrom: "Bot" as const,
         },
       ]);

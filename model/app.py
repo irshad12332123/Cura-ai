@@ -102,7 +102,10 @@ User Question: {query}
 def ask():
     print("Ask Endpoint Hit From flask")
     data = request.get_json()
+    print(data)
     user_query = data.get("query", "")
+    print(user_query)
+
 
     if not user_query.strip():
         return jsonify({"error": "Empty query"}), 400
