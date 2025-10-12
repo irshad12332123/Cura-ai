@@ -6,11 +6,10 @@ const establishConnection = async () => {
       host: process.env.DATABASE_HOST || 'localhost',
       user: process.env.DATABASE_USER || 'root',
       password: process.env.DATABASE_PASSWORD || 'irshad12345.',
-      database: process.env.DATABASE_NAME || 'stayoff',
+      database: process.env.DATABASE_NAME || 'cura_ai',
     });
 
     console.log('Connected to the MySQL database.');
-    console.log('Connection keys:', Object.keys(connection)); 
 
     return connection; 
   } catch (err) {

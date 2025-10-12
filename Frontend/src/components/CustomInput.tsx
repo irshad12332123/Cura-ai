@@ -5,9 +5,10 @@ interface InputProps {
   value?: string,
   placeholder?: string,
   setValue?: any
-  handleKeyPress?: any
+  handleKeyPress?: any,
+  customStyles?: any,
 }
-function CustomInput({ value, placeholder, setValue, inputType, handleKeyPress }: InputProps) {
+function CustomInput({ value, placeholder, setValue, inputType, handleKeyPress, customStyles }: InputProps) {
   return (
 
     <input 
@@ -16,10 +17,10 @@ function CustomInput({ value, placeholder, setValue, inputType, handleKeyPress }
     onChange={(e) => setValue(e.target.value)}
     value={value}
     onKeyDown={handleKeyPress}
-    className='w-full focus:outline-none  focus:border-teal-500'
+    className={`w-full focus:outline-none  focus:border-teal-500 ${customStyles}`}
     />
   )
-  
+
 }
 
 export default CustomInput

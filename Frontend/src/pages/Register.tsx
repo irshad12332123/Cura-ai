@@ -5,11 +5,14 @@ import CustomInput from "../components/CustomInput";
 import CustomButtton from "../components/CustomButtton";
 import Loader from "../components/Loader";
 
-function LogIn() {
-  const { login, loading, accessToken } = useAuth();
+function Register() {
+  const { register, loading, accessToken } = useAuth();
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+
 
   useEffect(() => {
     if (!loading && accessToken) {
@@ -18,13 +21,20 @@ function LogIn() {
   }, [loading, accessToken, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
+
     e.preventDefault();
+
     try {
-      await login(name, password);
-      navigate("/");
-    } catch {
-      alert("Invalid credentials");
-    }
+      if (confirmPassword !== password) return setError("Please enter details")
+      await register(name, password);
+      navigate("/login");
+    } catch (e) {
+  if (e instanceof Error) {
+    setError(e.message);
+  } else {
+    setError("An unknown error occurred");
+  }
+}
   };
 
   if (loading)
@@ -45,27 +55,35 @@ function LogIn() {
         </p>
         <div className="w-[70%] flex flex-col gap-5">
           <CustomInput
-            placeholder="enter name"
+            placeholder="Name"
             value={name}
             inputType="text"
             setValue={setName}
             customStyles={"border border-[#3C324D] py-4 rounded-xl px-3 text-white"}
           />
           <CustomInput
-            placeholder="enter password"
+            placeholder="Password"
             value={password}
             inputType="password"
             setValue={setPassword}
             customStyles={"border border-[#3C324D] py-4 rounded-xl px-3 text-white"}
           />
+            <CustomInput
+            placeholder="confirm password"
+            value={confirmPassword}
+            inputType="password"
+            setValue={setConfirmPassword}
+            customStyles={"border border-[#3C324D] py-4 rounded-xl px-3 text-white"}
+          />
         </div>
         <div className="w-full flex flex-col gap-5 justify-center items-center">
-          <p className="text-white">New? <Link to={"/register"} className="text-teal-500">Register Here! </Link></p>
-          <CustomButtton value="Log In" type="secondary" btnType="submit" />
+          { error && <p className="text-red-400">{error}</p>}
+          <p className="text-white">Already have account? <Link to={"/login"} className="text-teal-500">Login Here! </Link></p>
+          <CustomButtton  value="Register" type="secondary" btnType="submit" />
         </div>
       </form>
     </main>
   );
 }
 
-export default LogIn;
+export default Register;

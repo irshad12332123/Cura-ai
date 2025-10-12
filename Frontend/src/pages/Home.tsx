@@ -3,6 +3,7 @@ import ChatMessage from "../components/ChatMessage";
 import NavBar from "./NavBar";
 import CustomInput from "../components/CustomInput";
 import { BsSendFill } from "react-icons/bs";
+import BlobAnimation from "../components/BlobAnimation";
 
 
 
@@ -62,8 +63,10 @@ function Home() {
   };
 
   return (
-    <div className="py-2 px-80 bg-gradient-to-bl from-[#232e2f] via-[#051517] to-[#000000] h-screen w-full flex flex-col">
-      <main className="px-4 border-teal-900 border-x-2 flex flex-col h-full">
+    <div className="  py-2 px-80 bg-gradient-to-bl from-[#232e2f] via-[#051517] to-[#000000] h-screen w-full flex flex-col">
+                         
+      <main className="px-4   border-teal-900 border-x-2 flex flex-col h-full">
+
         <NavBar setChats={setMessages} />
         <div className="flex-1 overflow-y-auto mt-10 space-y-6 scrollbar-thumb-[#0a9396]/40" style={{scrollbarWidth: "none"}}>
           {messages.map((msg, index) => (
@@ -80,7 +83,8 @@ function Home() {
         </div>
 
         {/* INPUT AREA */}
-        <div className="flex items-center gap-3 justify-between bg-[#0b1c1d] text-white pl-7 pr-2 py-4 rounded-xl">
+        <div className=" flex items-center gap-3 justify-between bg-[#0b1c1d] text-white pl-7 pr-2 py-4 rounded-xl">
+          
           <CustomInput
             inputType="text"
             placeholder="Type your message..."
