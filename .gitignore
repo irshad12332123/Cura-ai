@@ -11,6 +11,11 @@ Backend/node_modules/
 logs
 *.log
 
+#fals
+model/venv
+model/__pychache__/
+*.pyc
+
 # OS junk
 .DS_Store
 Thumbs.db
