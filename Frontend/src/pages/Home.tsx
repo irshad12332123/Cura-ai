@@ -32,18 +32,18 @@ function Home() {
     setLoading(true);
 
     try {
-      const res = await fetch("https://", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: input }),
-      });
+const res = await fetch("http://localhost:3000/api/generate", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ prompt: input }),
+});
 
       const data = await res.json();
 
       setMessages([
         ...newMessages,
         {
-          message: data.reply || "Sorry, I didn’t get that.",
+          message: data.result || "Sorry, I didn’t get that.",
           messageFrom: "Bot" as const,
         },
       ]);

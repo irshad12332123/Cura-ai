@@ -100,6 +100,7 @@ User Question: {query}
 # 🌐 Flask endpoint
 @app.route("/ask", methods=["POST"])
 def ask():
+    print("Ask Endpoint Hit From flask")
     data = request.get_json()
     user_query = data.get("query", "")
 
