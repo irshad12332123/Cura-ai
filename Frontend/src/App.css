@@ -1,0 +1,4 @@
+.chat-container-scrollbar{
+  scrollbar-width: none;
+  scrollbar-color: red yellow;
+}

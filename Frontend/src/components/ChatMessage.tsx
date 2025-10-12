@@ -17,17 +17,21 @@ function ChatMessage({ message, messageFrom }: Props) {
       }`}
     >
       {isUser ? (
-        <CiUser className="text-4xl text-gray-700 bg-white rounded-xl p-1 " />
+        <CiUser
+          className="w-12 h-12 flex-shrink-0 self-start text-5xl text-white bg-black rounded-xl p-2"
+        />
       ) : (
-        <TbRibbonHealth className="text-4xl text-gray-700 bg-gray-100 p-1 rounded-2xl" />
+        <TbRibbonHealth
+          className="w-12 h-12 flex-shrink-0 self-start text-5xl text-gray-700 bg-gray-100 p-2 rounded-2xl"
+        />
       )}
 
       <div
-        className={`flex flex-col w-auto p-3 rounded-xl ${
-          isUser ? "bg-[#000000] " : "bg-[#103b41]"
+        className={`flex flex-col w-auto max-w-[70%] p-3 rounded-xl ${
+          isUser ? "bg-[#020d12] shadow-2xl border border-gray-800" : "bg-[#103b41] shadow-2xl border border-gray-500"
         }`}
       >
-        <p className="text-xl leading-6 text-white px-6">{message}</p>
+        <p className="text-xl leading-6 text-white">{message}</p>
       </div>
     </div>
   );

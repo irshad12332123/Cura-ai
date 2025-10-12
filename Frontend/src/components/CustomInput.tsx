@@ -5,17 +5,21 @@ interface InputProps {
   value?: string,
   placeholder?: string,
   setValue?: any
+  handleKeyPress?: any
 }
-function CustomInput({ value, placeholder, setValue, inputType }: InputProps) {
+function CustomInput({ value, placeholder, setValue, inputType, handleKeyPress }: InputProps) {
   return (
+
     <input 
     type={inputType} 
     placeholder={placeholder} 
     onChange={(e) => setValue(e.target.value)}
     value={value}
-    className='w-full h-15 p-5 text-white border-b-1 border-[rgba(189,180,205,0.35)] border-l-1 rounded-4xl  shadow-[0_0_10px_rgba(153,140,175,0.20)] '
+    onKeyDown={handleKeyPress}
+    className='w-full focus:outline-none  focus:border-teal-500'
     />
   )
+  
 }
 
 export default CustomInput
