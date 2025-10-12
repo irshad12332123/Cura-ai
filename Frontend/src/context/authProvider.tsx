@@ -84,7 +84,6 @@ const login = async (username: string, password: string): Promise<void> => {
   }
 };
 
-
   const logout = async () => {
     try {
       setLoading(true);
