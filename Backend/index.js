@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 3000;
 require("dotenv").config({ path: "../.env" });
 
 connectToMongo();
+
 app.use(
   cors({
     origin: [
@@ -23,8 +24,8 @@ app.use(
   })
 );
 
-// Handle OPTIONS preflight explicitly (important!)
-app.options("*", cors());
+// FIX for Express 5 path-to-regexp change
+app.options("/*", cors());
 
 app.use(express.json());
 
