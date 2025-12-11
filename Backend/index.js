@@ -24,9 +24,6 @@ app.use(
   })
 );
 
-// FIX for Express 5 path-to-regexp change
-app.options("/*", cors());
-
 app.use(express.json());
 
 app.use("/auth", auth);
