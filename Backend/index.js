@@ -11,7 +11,11 @@ require("dotenv").config({ path: "../.env" });
 connectToMongo();
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://cura-ai-peach.vercel.app"],
+    origin: [
+      "http://localhost:5173",
+      "https://cura-ai-peach.vercel.app, https://curics.in",
+      "https://www.curics.in/",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
