@@ -12,9 +12,13 @@ router.post("/generate", async (req, res) => {
       context: context || [],
     };
 
-    const response = await axios.post("http://127.0.0.1:5000/chat", payload, {
-      headers: { "Content-Type": "application/json" },
-    });
+    const response = await axios.post(
+      "https://web-production-9f597.up.railway.app/chat",
+      payload,
+      {
+        headers: { "Content-Type": "application/json" },
+      }
+    );
 
     res.json({ result: response.data });
   } catch (err) {
