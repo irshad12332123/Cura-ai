@@ -55,7 +55,7 @@ function Home() {
     setInput("");
     setLoading(true);
 
-    await fetch("http://localhost:3000/api/history/add", {
+    await fetch("https://cura-ai-tq9s.onrender.com/api/history/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -70,18 +70,21 @@ function Home() {
     }));
 
     try {
-      const res = await fetch("http://localhost:3000/api/generate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          query: input,
-          context: contextForBackend,
-          userId,
-        }),
-      });
+      const res = await fetch(
+        "https://cura-ai-tq9s.onrender.com/api/generate",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            query: input,
+            context: contextForBackend,
+            userId,
+          }),
+        }
+      );
 
       const data = await res.json();
       const result = data.result.reply;
@@ -91,7 +94,7 @@ function Home() {
         { message: result || "Sorry, I didn’t get that.", messageFrom: "Bot" },
       ]);
 
-      await fetch("http://localhost:3000/api/history/add", {
+      await fetch("https://cura-ai-tq9s.onrender.com/api/history/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

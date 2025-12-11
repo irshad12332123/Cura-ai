@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import type { AuthContextType, User } from "../../types/auth";
 
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = "https://cura-ai-tq9s.onrender.com";
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const useAuth = (): AuthContextType => {

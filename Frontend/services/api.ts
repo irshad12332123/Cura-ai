@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = "https://cura-ai-tq9s.onrender.com";
 
 export const register = async (name: string, password: string) => {
   try {
@@ -15,9 +15,7 @@ export const register = async (name: string, password: string) => {
     if (!response.ok) return { error: data.message };
 
     return data;
-  } catch (error) {
-  
-  }
+  } catch (error) {}
 };
 
 export const login = async (name: string, password: string) => {
