@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function useChatHistory(userId: any, token: any) {
   const [history, setHistory] = useState([]);
