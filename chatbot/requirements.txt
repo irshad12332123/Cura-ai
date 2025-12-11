@@ -3,3 +3,4 @@ python-dotenv==1.0.1
 openai==1.59.3
 pydantic==2.9.2
 flask-cors==4.0.1
+gunicorn
