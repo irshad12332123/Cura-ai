@@ -153,7 +153,9 @@ function Home() {
                 inputType="text"
                 placeholder="Type your message..."
                 value={input}
-                handleKeyPress={(e) => e.key === "Enter" && handleSend()}
+                handleKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => {
+                  if (e.key === "Enter") handleSend();
+                }}
                 setValue={setInput}
                 customStyles="bg-transparent text-white outline-none"
               />
