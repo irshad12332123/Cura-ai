@@ -1,4 +1,3 @@
-import React from "react";
 import { TbRibbonHealth } from "react-icons/tb";
 import { CiUser } from "react-icons/ci";
 

@@ -30,9 +30,9 @@ function Home() {
         { message: "Hey! How can I help you today?", messageFrom: "Bot" },
       ]);
     } else {
-      const formatted = history.map((h) => ({
+      const formatted = history.map((h: any) => ({
         message: h.message,
-        messageFrom: h.sender,
+        messageFrom: h.sender as "User" | "Bot",
       }));
       setMessages(formatted);
     }
@@ -50,7 +50,10 @@ function Home() {
   const handleSend = async () => {
     if (!input.trim()) return;
 
-    const newMessages = [...messages, { message: input, messageFrom: "User" }];
+    const newMessages = [
+      ...messages,
+      { message: input, messageFrom: "User" as const },
+    ];
     setMessages(newMessages);
     setInput("");
     setLoading(true);
@@ -139,7 +142,9 @@ function Home() {
                 inputType="text"
                 placeholder="Type your message..."
                 value={input}
-                handleKeyPress={(e) => e.key === "Enter" && handleSend()}
+                handleKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => {
+                  if (e.key === "Enter") handleSend();
+                }}
                 setValue={setInput}
                 customStyles="bg-transparent text-white outline-none"
               />

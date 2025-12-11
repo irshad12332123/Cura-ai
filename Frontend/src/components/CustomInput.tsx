@@ -1,5 +1,3 @@
-import React from "react";
-
 interface InputProps {
   inputType: string;
   value?: string;
