@@ -128,11 +128,23 @@ function Home() {
   };
 
   return (
-    <div className="h-screen w-full bg-[#0f1a0f] flex flex-col items-center p-4">
-      <div className="w-full max-w-6xl h-full bg-[#0c140c] rounded-3xl shadow-xl border border-[#1e2b1e] flex flex-col">
+    <div className="h-screen w-full bg-[#0f1a0f] flex justify-center items-center p-2">
+      <div
+        className="
+      w-full 
+      max-w-lg              /* Mobile-friendly width */
+      h-full 
+      bg-[#0c140c] 
+      rounded-3xl 
+      shadow-xl 
+      border border-[#1e2b1e] 
+      flex flex-col
+    "
+      >
         <NavBar setChats={setMessages} clearHistory={clearHistory} />
 
-        <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6 chat">
+        {/* CHAT AREA */}
+        <div className="flex-1 chat overflow-y-auto px-4 py-4 space-y-6">
           {messages.map((msg, index) => (
             <ChatMessage
               key={index}
@@ -146,16 +158,15 @@ function Home() {
           <div ref={chatEndRef} />
         </div>
 
-        <div className="px-6 py-5 bg-[#0c140c] rounded-b-3xl flex items-center chat">
+        {/* INPUT AREA */}
+        <div className="px-4 py-4 bg-[#0c140c] chat rounded-b-3xl">
           <div className="relative w-full">
-            <div className="bg-[#111c11] border border-[#1e2b1e] rounded-full px-6 py-3 flex items-center">
+            <div className="bg-[#111c11] border chat border-[#1e2b1e] rounded-full px-6 py-3 flex items-center">
               <CustomInput
                 inputType="text"
                 placeholder="Type your message..."
                 value={input}
-                handleKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => {
-                  if (e.key === "Enter") handleSend();
-                }}
+                handleKeyPress={(e: any) => e.key === "Enter" && handleSend()}
                 setValue={setInput}
                 customStyles="bg-transparent text-white outline-none"
               />
@@ -163,9 +174,9 @@ function Home() {
 
             <button
               onClick={handleSend}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#2ecc71] hover:bg-[#27ae60] transition p-3 rounded-full shadow-lg"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#2ecc71] hover:bg-[#27ae60] transition p-3 rounded-full shadow-lg"
             >
-              <BsSendFill className="text-black text-2xl" />
+              <BsSendFill className="text-black text-xl" />
             </button>
           </div>
         </div>

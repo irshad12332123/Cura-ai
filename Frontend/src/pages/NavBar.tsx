@@ -10,7 +10,7 @@ function NavBar({ setChats, clearHistory }: Props) {
   const { logout, user } = useAuth();
 
   return (
-    <header className="w-full bg-[#0c140c] rounded-t-3xl border-b border-[#1e2b1e] px-6 py-4 flex justify-between items-center">
+    <header className="w-full bg-[#0c140c] rounded-t-3xl border-b border-[#1e2b1e] px-4 py-3 flex justify-between items-center">
       {/* LEFT SECTION – ICON + TITLE */}
       <div className="flex items-center gap-3">
         <div className="bg-[#1e2b1e] p-3 rounded-full shadow-md flex items-center justify-center">
