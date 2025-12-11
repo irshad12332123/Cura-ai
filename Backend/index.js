@@ -13,14 +13,19 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://cura-ai-peach.vercel.app, https://curics.in",
-      "https://www.curics.in/",
+      "https://cura-ai-peach.vercel.app",
+      "https://curics.in",
+      "https://www.curics.in",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
+
+// Handle OPTIONS preflight explicitly (important!)
+app.options("*", cors());
+
 app.use(express.json());
 
 app.use("/auth", auth);
