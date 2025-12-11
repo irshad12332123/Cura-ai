@@ -29,49 +29,61 @@ function LogIn() {
 
   if (loading)
     return (
-      <div className="0 h-screen w-full flex justify-center items-center">
+      <div className="h-screen w-full flex justify-center items-center">
         <Loader variant="bar" />
       </div>
     );
 
   return (
-    <main className="flex bg-gradient-to-bl from-[#000000] via-[#07131b]  to-[#04000b] h-screen w-screen justify-center items-center">
+    <main className="min-h-screen w-full flex items-center justify-center bg-[#081208] px-4">
       <form
         onSubmit={handleSubmit}
-        className="w-[50%] md:w-120 h-150 border-1 border-[rgba(153,140,175,0.35)] shadow-[0_0_10px_rgba(153,140,175,0.35)] flex flex-col p-5 rounded-4xl items-center justify-between"
+        className="
+          w-full max-w-md 
+          bg-[#0f1a0f] 
+          shadow-lg border border-[#1e2b1e]
+          rounded-3xl p-8 flex flex-col gap-6
+        "
       >
-        <p className="text-2xl pb-5 w-full text-white text-center border-b-1 border-[rgba(153,140,175,0.19)]">
-          Stay Local 🔐
+        {/* Title */}
+        <h1 className="text-2xl md:text-3xl font-semibold text-center text-white">
+          Welcome Back
+        </h1>
+        <p className="text-center text-gray-300 text-sm -mt-4">
+          Please enter your details to sign in.
         </p>
-        <div className="w-[70%] flex flex-col gap-5">
+
+        {/* INPUTS */}
+        <div className="flex flex-col gap-4 mt-2">
           <CustomInput
-            placeholder="enter name"
+            placeholder="Enter your username"
             value={name}
             inputType="text"
             setValue={setName}
-            customStyles={
-              "border border-[#3C324D] py-4 rounded-xl px-3 text-white"
-            }
+            customStyles="w-full py-3 px-4 rounded-xl bg-[#111c11] border border-[#1e2b1e] text-white"
           />
+
           <CustomInput
-            placeholder="enter password"
+            placeholder="Enter your password"
             value={password}
             inputType="password"
             setValue={setPassword}
-            customStyles={
-              "border border-[#3C324D] py-4 rounded-xl px-3 text-white"
-            }
+            customStyles="w-full py-3 px-4 rounded-xl bg-[#111c11] border border-[#1e2b1e] text-white"
           />
         </div>
-        <div className="w-full flex flex-col gap-5 justify-center items-center">
-          <p className="text-white">
-            New?{" "}
-            <Link to={"/register"} className="text-teal-500">
-              Register Here!{" "}
-            </Link>
-          </p>
-          <CustomButtton value="Log In" type="secondary" btnType="submit" />
+
+        {/* Login Button */}
+        <div className="w-full mt-2">
+          <CustomButtton value="Login" type="secondary" btnType="submit" />
         </div>
+
+        {/* Register Link */}
+        <p className="text-center text-gray-300 text-sm">
+          Don’t have an account?{" "}
+          <Link to={"/register"} className="text-green-400 hover:underline">
+            Signup
+          </Link>
+        </p>
       </form>
     </main>
   );
