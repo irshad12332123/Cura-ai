@@ -1,4 +1,9 @@
-.chat-container-scrollbar{
-  scrollbar-width: none;
-  scrollbar-color: red yellow;
+.chat::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.chat {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

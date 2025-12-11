@@ -1,59 +1,50 @@
-import { MdDelete } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import { useAuth } from "../context/authProvider";
-import { CiLogout } from "react-icons/ci";
-import BlobAnimation from "../components/BlobAnimation";
+import { FaRobot } from "react-icons/fa";
 
-interface NavBarProps {
-  setChats: React.Dispatch<
-    React.SetStateAction<{ message: string; messageFrom: "Bot" }[]>
-  >;
+interface Props {
+  setChats: any;
+  clearHistory: () => void;
 }
 
-function NavBar({ setChats }: NavBarProps) {
-  const navigate = useNavigate();
-  const { logout } = useAuth();
-
-  const handleLogOut = () => {
-    logout();
-    navigate("/login", { replace: true });
-  };
-
-  const handleClearChat = () => {
-    setChats([{ message: "Hey! How can I help you today?", messageFrom: "Bot" }]);
-  };
+function NavBar({ setChats, clearHistory }: Props) {
+  const { logout, user } = useAuth();
 
   return (
-    <div>
-      <ul className="flex justify-between items-center">
-        <li className="text-gray-50 text-xl">
-          <strong className="text-5xl text-white">C</strong>ura A{" "}
-          <strong className="text-7xl text-shadow-xs text-shadow-teal-600 font-bold text-[#08e2ff]">
-            i
-          </strong>
-        </li>
-
-        {/* Buttons container */}
-        <div className=" flex justify-center items-center gap-5  overflow-visible">
-
-          <li>
-            <button
-              className="px-6 transition-all duration-300 hover:shadow-[0_0_20px_rgba(10,147,150,0.6)] py-3 bg-gradient-to-r from-[#000c0f] to-[#051217] text-center text-white rounded-2xl cursor-pointer shadow-2xl border border-[rgba(10,147,150,0.6)]"
-              onClick={handleClearChat}
-            >
-              <MdDelete className="inline-block text-3xl" />
-            </button>
-          </li>
-
-          <button
-            className="px-6 transition-all duration-300 hover:shadow-[0_0_20px_rgba(10,147,150,0.6)] py-3 bg-gradient-to-r from-[#000c0f] to-[#051217] text-center text-white rounded-2xl cursor-pointer shadow-2xl border border-[rgba(10,147,150,0.6)]"
-            onClick={handleLogOut}
-          >
-            <CiLogout className="text-3xl text-white" />
-          </button>
+    <header className="w-full bg-[#0c140c] rounded-t-3xl border-b border-[#1e2b1e] px-6 py-4 flex justify-between items-center">
+      {/* LEFT SECTION – ICON + TITLE */}
+      <div className="flex items-center gap-3">
+        <div className="bg-[#1e2b1e] p-3 rounded-full shadow-md flex items-center justify-center">
+          <FaRobot className="text-[#2ecc71] text-xl" />
         </div>
-      </ul>
-    </div>
+
+        <h1 className="text-white text-lg font-semibold">
+          {user?.username || "AI Assistant"}
+        </h1>
+      </div>
+
+      {/* RIGHT SECTION – DELETE + LOGOUT */}
+      <div className="flex items-center gap-3">
+        {/* DELETE CHAT */}
+        <button
+          onClick={() => {
+            setChats([]);
+            clearHistory();
+          }}
+          className="px-4 py-2 bg-[#1f1f1f] hover:bg-[#2a2a2a] text-white rounded-full transition border border-[#333]"
+        >
+          Delete Chat
+        </button>
+
+        {/* LOGOUT */}
+        <button
+          onClick={logout}
+          className="px-4 py-2 bg-[#2ecc71] hover:bg-[#27ae60] text-black rounded-full font-medium transition"
+        >
+          Logout
+        </button>
+      </div>
+    </header>
   );
 }
 

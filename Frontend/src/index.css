@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
-*{
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+* {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
-.chat-container-scrollbar{
+.chat-container-scrollbar {
   scrollbar-width: none;
   scrollbar-color: red yellow;
 }

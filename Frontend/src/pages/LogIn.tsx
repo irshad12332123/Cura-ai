@@ -49,18 +49,27 @@ function LogIn() {
             value={name}
             inputType="text"
             setValue={setName}
-            customStyles={"border border-[#3C324D] py-4 rounded-xl px-3 text-white"}
+            customStyles={
+              "border border-[#3C324D] py-4 rounded-xl px-3 text-white"
+            }
           />
           <CustomInput
             placeholder="enter password"
             value={password}
             inputType="password"
             setValue={setPassword}
-            customStyles={"border border-[#3C324D] py-4 rounded-xl px-3 text-white"}
+            customStyles={
+              "border border-[#3C324D] py-4 rounded-xl px-3 text-white"
+            }
           />
         </div>
         <div className="w-full flex flex-col gap-5 justify-center items-center">
-          <p className="text-white">New? <Link to={"/register"} className="text-teal-500">Register Here! </Link></p>
+          <p className="text-white">
+            New?{" "}
+            <Link to={"/register"} className="text-teal-500">
+              Register Here!{" "}
+            </Link>
+          </p>
           <CustomButtton value="Log In" type="secondary" btnType="submit" />
         </div>
       </form>

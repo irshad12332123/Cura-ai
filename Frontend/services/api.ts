@@ -1,21 +1,41 @@
-export const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = "http://localhost:3000";
 
-export const login = async (username: string, password: string) => {
+export const register = async (name: string, password: string) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/auth/login`, {
+    const response = await fetch(`${API_BASE_URL}/auth/register`, {
       method: "POST",
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ name, password }),
       headers: {
         "Content-Type": "application/json",
       },
     });
 
-    const analystData = await response.json();
+    const data = await response.json();
 
-    if (!response.ok) return { error: analystData.message };
-    
-    return analystData;
+    if (!response.ok) return { error: data.message };
+
+    return data;
   } catch (error) {
-    if (error instanceof Error) throw new Error(error.message);
+  
+  }
+};
+
+export const login = async (name: string, password: string) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/auth/login`, {
+      method: "POST",
+      body: JSON.stringify({ name, password }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const result = await response.json();
+    if (!response.ok) return { error: result.message };
+    return result;
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new ErrorEvent(error.message);
+    }
   }
 };

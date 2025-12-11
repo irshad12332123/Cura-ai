@@ -1,21 +1,15 @@
-const mysql = require('mysql2/promise');
+const mongoose = require("mongoose");
 
-const establishConnection = async () => {
+const connectToMongo = async () => {
   try {
-    const connection = await mysql.createConnection({
-      host: process.env.DATABASE_HOST || 'localhost',
-      user: process.env.DATABASE_USER || 'root',
-      password: process.env.DATABASE_PASSWORD || 'irshad12345.',
-      database: process.env.DATABASE_NAME || 'cura_ai',
+    await mongoose.connect(process.env.MONGO_URI, {
+      serverSelectionTimeoutMS: 5000,
     });
-
-    console.log('Connected to the MySQL database.');
-
-    return connection; 
+    console.log("✅ MongoDB connected successfully");
   } catch (err) {
-    console.error('Error connecting to the database:', err);
-    throw err;
+    console.error("❌ MongoDB connection failed:", err);
+    process.exit(1);
   }
 };
 
-module.exports =  establishConnection ;
+module.exports = connectToMongo;

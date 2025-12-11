@@ -1,19 +1,24 @@
 const express = require("express");
 const axios = require("axios");
 const router = express.Router();
-
 router.post("/generate", async (req, res) => {
-  console.log("GENERATE ENDPOINT HIT")
+  console.log("GENERATE ENDPOINT HIT");
   try {
-    const { query } = req.body;
-    console.log(query)
-const payload = { query: query.trim() }
-    const response = await axios.post("http://127.0.0.1:5000/ask", payload , {
-        headers: { 'Content-Type': 'application/json' },
+    const { query, context } = req.body;
+    console.log("User query:", query);
+
+    const payload = {
+      message: query.trim(),
+      context: context || [],
+    };
+
+    const response = await axios.post("http://127.0.0.1:5000/chat", payload, {
+      headers: { "Content-Type": "application/json" },
     });
+
     res.json({ result: response.data });
   } catch (err) {
-    console.error("Flask error:", err);
+    console.error("Flask error:", err.response?.data || err.message);
     res.status(500).json({ message: "Error communicating with model server" });
   }
 });
