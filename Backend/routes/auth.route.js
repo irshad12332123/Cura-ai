@@ -4,8 +4,6 @@ const bcrypt = require("bcrypt");
 const User = require("../models/User.model");
 const authRouter = express.Router();
 
-// ---------------------- REGISTER ---------------------- //
-
 authRouter.post("/register", async (req, res) => {
   const { username, password } = req.body;
 
@@ -34,8 +32,6 @@ authRouter.post("/register", async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 });
-
-// ---------------------- LOGIN ---------------------- //
 
 authRouter.post("/login", async (req, res) => {
   const { username, password } = req.body;

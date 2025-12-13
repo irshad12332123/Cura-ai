@@ -1,4 +1,4 @@
-import { useAuth } from "../context/authProvider";
+import { useAuth } from "../auth/useAuth";
 import { FaRobot } from "react-icons/fa";
 
 interface Props {

@@ -6,7 +6,7 @@ export interface User {
 export interface AuthContextType {
   user: User | null;
   accessToken: string | null;
-  isAuthenticated: boolean; // ✅ ADD THIS LINE
+  isAuthenticated: boolean;
   login: (username: string, password: string) => Promise<void>;
   register: (username: string, password: string) => Promise<void>;
   logout: () => void;

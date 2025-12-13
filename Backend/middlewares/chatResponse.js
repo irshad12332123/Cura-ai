@@ -11,14 +11,16 @@ router.post("/generate", async (req, res) => {
       message: query.trim(),
       context: context || [],
     };
+    // actual response prompt
+    // const response = await axios.post(
+    //   "https://web-production-9f597.up.railway.app/chat",
+    //   payload,
+    //   {
+    //     headers: { "Content-Type": "application/json" },
+    //   }
+    // );
 
-    const response = await axios.post(
-      "https://web-production-9f597.up.railway.app/chat",
-      payload,
-      {
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    response = { data: "Developers are making some real Sh!t, check later" };
 
     res.json({ result: response.data });
   } catch (err) {

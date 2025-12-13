@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/authProvider";
-import CustomInput from "../components/CustomInput";
-import CustomButtton from "../components/CustomButtton";
-import Loader from "../components/Loader";
+import { useAuth } from "../auth/useAuth";
+import CustomInput from "../components/features/bot/CustomInput";
+import CustomButtton from "../components/ui/CustomButtton";
+import Loader from "../components/ui/Loader";
 
 function Register() {
   const { register, loading, accessToken } = useAuth();

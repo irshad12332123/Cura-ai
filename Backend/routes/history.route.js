@@ -4,9 +4,7 @@ const auth = require("../middlewares/auth.midleware");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
 
-// ----------------------------------------------------
 // ADD MESSAGE
-// ----------------------------------------------------
 router.post("/add", async (req, res) => {
   try {
     const token = req.headers.authorization?.split(" ")[1];
@@ -17,7 +15,7 @@ router.post("/add", async (req, res) => {
     const { message, sender } = req.body;
 
     await History.create({
-      userId: decoded.id, // <---- THIS IS THE KEY
+      userId: decoded.id,
       message,
       sender,
     });
@@ -29,9 +27,7 @@ router.post("/add", async (req, res) => {
   }
 });
 
-// ----------------------------------------------------
 // GET HISTORY FOR A USER
-// ----------------------------------------------------
 router.get("/:userId", auth, async (req, res) => {
   try {
     if (req.user.id !== req.params.userId)
@@ -48,9 +44,7 @@ router.get("/:userId", auth, async (req, res) => {
   }
 });
 
-// ----------------------------------------------------
 // DELETE ALL HISTORY FOR A USER
-// ----------------------------------------------------
 router.delete("/:userId", auth, async (req, res) => {
   try {
     if (req.user.id !== req.params.userId)

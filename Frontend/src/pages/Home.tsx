@@ -1,12 +1,14 @@
 import { useState, useRef, useEffect } from "react";
-import ChatMessage from "../components/ChatMessage";
+import ChatMessage from "../components/features/bot/ChatMessage";
 import NavBar from "./NavBar";
-import CustomInput from "../components/CustomInput";
-import { useAuth } from "../context/authProvider";
+import CustomInput from "../components/features/bot/CustomInput";
+import { useAuth } from "../auth/useAuth";
 import useChatHistory from "../hooks/useChatHistory";
 import { BsSendFill } from "react-icons/bs";
 import "../App.css";
-
+import type { ContextChatMessage } from "../../types/types";
+import { API_BASE_URL } from "../api/baseurl";
+import { addUserMessage, generateResponse } from "../modules/bot/bot.service";
 type Sender = "User" | "Bot";
 
 interface ChatMessageType {
@@ -69,40 +71,23 @@ function Home() {
     setLoading(true);
 
     // Store user message
-    await fetch("https://cura-ai-tq9s.onrender.com/api/history/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ message: input, sender: "User" }),
-    });
+    addUserMessage(token, input);
 
-    const contextForBackend = newMessages.map((m) => ({
+    const contextForBackend: ContextChatMessage[] = newMessages.map((m) => ({
       role: m.messageFrom === "User" ? "user" : "assistant",
       content: m.message,
     }));
 
     try {
-      const res = await fetch(
-        "https://cura-ai-tq9s.onrender.com/api/generate",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            query: input,
-            context: contextForBackend,
-            userId,
-          }),
-        }
-      );
+      const res = generateResponse(token, input, contextForBackend, userId);
 
-      const data = await res.json();
+      // const data = await res.json(); // for maintainence purpose
+
+      // const replyText: string =
+      //   data?.result?.reply || "Sorry, I didn’t get that.";
+
       const replyText: string =
-        data?.result?.reply || "Sorry, I didn’t get that.";
+        "Developer is busy for maintenance, check back later";
 
       const botMessage: ChatMessageType = {
         message: replyText,
@@ -112,7 +97,7 @@ function Home() {
       setMessages([...newMessages, botMessage]);
 
       // Save bot reply
-      await fetch("https://cura-ai-tq9s.onrender.com/api/history/add", {
+      await fetch(`${API_BASE_URL}/api/history/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -132,7 +117,7 @@ function Home() {
       <div
         className="
       w-full 
-      max-w-lg              /* Mobile-friendly width */
+      max-w-lg             
       h-full 
       bg-[#0c140c] 
       rounded-3xl 

@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
-import { useAuth } from "./authProvider";
-import Loader from "../components/Loader";
+import { useAuth } from "../auth/useAuth";
+import Loader from "../components/ui/Loader";
 import type { JSX } from "react";
 
 interface Props {
